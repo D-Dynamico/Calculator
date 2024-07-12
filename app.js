@@ -119,4 +119,3 @@ function operations(Num1, Num2, operator) {
             return Num2;
     }
 }
-
