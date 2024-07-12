@@ -27,10 +27,16 @@ document.querySelectorAll('.operator').forEach(item=> {
         else if (clickedOperator === '=') {
             if (operator !== "" && Num1 !== null && displayValue !== "") {
                 Num2 = parseFloat(displayValue);
-                const result = operations(Num1, Num2, operator);
-                displayValue = result.toString();
+                let result = operations(Num1, Num2, operator);
+                result = result.toString(); 
+                if(result.length<=4){
+                    displayValue=result;
+                }
+                else{
+                    displayValue = Number(result).toFixed(5);
+                }
                 document.querySelector('.displayScreen').textContent = displayValue;
-                Num1 = result;
+                Num1 = Number(result);
                 Num2 = null;
                 displayValue = "";
             }
@@ -38,8 +44,14 @@ document.querySelectorAll('.operator').forEach(item=> {
         else {
             if (operator !== "" && Num1 !== null && displayValue !== "") {
                 Num2 = parseFloat(displayValue);
-                const result = operations(Num1, Num2, operator);
-                displayValue = result.toString();
+                let result = operations(Num1, Num2, operator);
+                result = result.toString(); 
+                if(result.length<=4){
+                    displayValue=result;
+                }
+                else{
+                    displayValue = Number(result).toFixed(5);
+                }
                 document.querySelector('.displayScreen').textContent = displayValue;
                 Num1 = result;
                 Num2 = null;
