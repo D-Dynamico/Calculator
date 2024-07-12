@@ -16,7 +16,7 @@ document.querySelectorAll('.number').forEach(item => {
 
 document.querySelectorAll('.operator').forEach(item => {
     item.addEventListener('click', event => {
-        const clickedOperator = event.target.textContent;
+        let clickedOperator = event.target.textContent;
 
         if (clickedOperator === 'C') {
             clear();
@@ -26,14 +26,23 @@ document.querySelectorAll('.operator').forEach(item => {
             if (operator !== "" && Num1 !== null && displayValue !== "") {
                 Num2 = parseFloat(displayValue);
                 let result = operations(Num1, Num2, operator);
-                result = result.toString();
-                if (result.length <= 4) {
-                    displayValue = result;
+                if (result === "undefined") {
+                    displayValue = "undefined";
                 } else {
-                    displayValue = Number(result).toFixed(5);
+                    result = result.toString();
+                    if (result.length <= 4) {
+                        displayValue = result;
+                    } else {
+                        displayValue = Number(result).toFixed(5);
+                    }
                 }
                 document.querySelector('.displayScreen').textContent = displayValue;
-                Num1 = Number(result);
+                if(result!== 'undefined'){
+                    Num1=Number(result);
+                }
+                else{
+                    Num1=null;
+                }
                 Num2 = null;
                 operator = "";
             }
@@ -41,14 +50,23 @@ document.querySelectorAll('.operator').forEach(item => {
             if (operator !== "" && Num1 !== null && displayValue !== "") {
                 Num2 = parseFloat(displayValue);
                 let result = operations(Num1, Num2, operator);
-                result = result.toString();
-                if (result.length <= 4) {
-                    displayValue = result;
+                if (result === "undefined") {
+                    displayValue = "undefined";
                 } else {
-                    displayValue = Number(result).toFixed(5);
+                    result = result.toString();
+                    if (result.length <= 4) {
+                        displayValue = result;
+                    } else {
+                        displayValue = Number(result).toFixed(5);
+                    }
                 }
                 document.querySelector('.displayScreen').textContent = displayValue;
-                Num1 = Number(result);
+                if(result!== 'undefined'){
+                    Num1=Number(result);
+                }
+                else{
+                    Num1=null;
+                }
                 Num2 = null;
             } else {
                 Num1 = parseFloat(displayValue);
@@ -72,11 +90,11 @@ function multiply(a, b){
 }
 
 function divide(a,b){
-    if(b!==0){
-        return a/b;
+    if(a===0 || b===0){
+        return "undefined";
     }
     else{
-        return "undefined";
+        return a/b;
     }
 }
 
