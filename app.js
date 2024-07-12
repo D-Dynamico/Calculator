@@ -1,7 +1,7 @@
-let Num1=null;
-let Num2=null;
-let displayValue="";
-let operator="";
+let Num1 = null;
+let Num2 = null;
+let displayValue = "";
+let operator = "";
 
 function updateDisplay(value) {
     displayValue += value;
@@ -14,51 +14,45 @@ document.querySelectorAll('.number').forEach(item => {
     });
 });
 
-document.querySelectorAll('.operator').forEach(item=> {
+document.querySelectorAll('.operator').forEach(item => {
     item.addEventListener('click', event => {
-        const clickedOperator=event.target.textContent;
+        const clickedOperator = event.target.textContent;
 
-        if(clickedOperator==='C'){
+        if (clickedOperator === 'C') {
             clear();
-        }
-        else if(clickedOperator==='⌫'){
+        } else if (clickedOperator === '⌫') {
             backSpace();
-        }
-        else if (clickedOperator === '=') {
+        } else if (clickedOperator === '=') {
             if (operator !== "" && Num1 !== null && displayValue !== "") {
                 Num2 = parseFloat(displayValue);
                 let result = operations(Num1, Num2, operator);
-                result = result.toString(); 
-                if(result.length<=4){
-                    displayValue=result;
-                }
-                else{
+                result = result.toString();
+                if (result.length <= 4) {
+                    displayValue = result;
+                } else {
                     displayValue = Number(result).toFixed(5);
                 }
                 document.querySelector('.displayScreen').textContent = displayValue;
                 Num1 = Number(result);
                 Num2 = null;
-                displayValue = "";
+                operator = "";
             }
-        }
-        else {
+        } else {
             if (operator !== "" && Num1 !== null && displayValue !== "") {
                 Num2 = parseFloat(displayValue);
                 let result = operations(Num1, Num2, operator);
-                result = result.toString(); 
-                if(result.length<=4){
-                    displayValue=result;
-                }
-                else{
+                result = result.toString();
+                if (result.length <= 4) {
+                    displayValue = result;
+                } else {
                     displayValue = Number(result).toFixed(5);
                 }
                 document.querySelector('.displayScreen').textContent = displayValue;
-                Num1 = result;
+                Num1 = Number(result);
                 Num2 = null;
-                displayValue = "";
+            } else {
+                Num1 = parseFloat(displayValue);
             }
-
-            Num1 = parseFloat(displayValue);
             operator = clickedOperator;
             displayValue = "";
         }
