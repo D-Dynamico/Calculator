@@ -21,6 +21,7 @@ body {
     flex-direction: column;
     padding: 20px;
     box-shadow: 0 0 15px black;
+    position: relative;
 }
 
 .displayScreen{
@@ -76,3 +77,15 @@ button:hover{
     background-color: #e29479;
     filter: brightness(95%);
 } 
+
+.hoverImg {
+    display: none;
+    position: absolute;
+    top: 50px;  
+    right: 100px;  
+    width: 100px;  
+}
+
+.percent-btn:hover + .hoverImg {
+    display: block;
+}
