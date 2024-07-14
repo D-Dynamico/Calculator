@@ -22,7 +22,10 @@ document.querySelectorAll('.operator').forEach(item => {
             clear();
         } else if (clickedOperator === '⌫') {
             backSpace();
-        } else if (clickedOperator === '=') {
+        } else if (clickedOperator === '+/-') {
+            inversion();
+        }
+        else if (clickedOperator === '=') {
             if (operator !== "" && Num1 !== null && displayValue !== "") {
                 Num2 = parseFloat(displayValue);
                 let result = operations(Num1, Num2, operator);
@@ -37,11 +40,11 @@ document.querySelectorAll('.operator').forEach(item => {
                     }
                 }
                 document.querySelector('.displayScreen').textContent = displayValue;
-                if(result!== 'undefined'){
-                    Num1=Number(result);
+                if (result !== 'undefined') {
+                    Num1 = Number(result);
                 }
-                else{
-                    Num1=null;
+                else {
+                    Num1 = null;
                 }
                 Num2 = null;
                 operator = "";
@@ -61,11 +64,11 @@ document.querySelectorAll('.operator').forEach(item => {
                     }
                 }
                 document.querySelector('.displayScreen').textContent = displayValue;
-                if(result!== 'undefined'){
-                    Num1=Number(result);
+                if (result !== 'undefined') {
+                    Num1 = Number(result);
                 }
-                else{
-                    Num1=null;
+                else {
+                    Num1 = null;
                 }
                 Num2 = null;
             } else {
@@ -77,42 +80,45 @@ document.querySelectorAll('.operator').forEach(item => {
     });
 });
 
-function add(a,b){
-    return a+b;
+function add(a, b) {
+    return a + b;
 }
 
-function subtract(a,b){
-    return a-b;
+function subtract(a, b) {
+    return a - b;
 }
 
-function multiply(a, b){
-    return a*b;
+function multiply(a, b) {
+    return a * b;
 }
 
-function divide(a,b){
-    if(a===0 || b===0){
+function divide(a, b) {
+    if (a === 0 || b === 0) {
         return "undefined";
     }
-    else{
-        return a/b;
+    else {
+        return a / b;
     }
 }
 
-function inversion(a){
-    return -1*a;
+function inversion() {
+    if (displayValue !== "") {
+        displayValue = (parseFloat(displayValue) * -1).toString();
+        document.querySelector('.displayScreen').textContent = displayValue;
+    }
 }
 
-function clear(){
-    Num1='';
-    Num2='';
-    operator=''
-    displayValue='';
+function clear() {
+    Num1 = '';
+    Num2 = '';
+    operator = ''
+    displayValue = '';
     document.querySelector('.displayScreen').textContent = displayValue;
 }
 
-function backSpace(){
-    if(displayValue!==''){
-        displayValue='';
+function backSpace() {
+    if (displayValue !== '') {
+        displayValue = '';
     }
     document.querySelector('.displayScreen').textContent = displayValue;
 }
